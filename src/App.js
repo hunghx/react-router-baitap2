@@ -1,25 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css"
+import Header from "./components/Header";
+import {Route, Routes} from "react-router-dom";
+import Invoice from "./components/Invoice";
+import Expenses from "./components/Expenses";
+import NewInvoice from "./components/NewInvoice";
+import Invoices from "./components/Invoices";
+import InvoiceIndex from "./components/InvoiceIndex";
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+
+            <Routes>
+                <Route path={'/'} element={<Header/>}/>
+                <Route path={'/invoices'} element={<Invoices/>}>
+                    <Route index element={<InvoiceIndex/>}/>
+                    <Route path={'new'} element={<NewInvoice/>}/>
+                    <Route path={'/invoices/:invoiceId'} element={<Invoice/>}/>
+                </Route>
+                <Route path={'/expenses'} element={<Expenses/>}/>
+
+            </Routes>
+
+        </div>
+
+    );
 }
 
 export default App;
